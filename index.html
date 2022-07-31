@@ -1,1 +1,150 @@
-
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+   <link rel="stylesheet" href="style.css" type="text/css" media="all" />
+    <title>Facebook user page</title>
+    <style type="text/css" media="all">
+      *{
+        margin: 0;
+        padding: 0;
+      }
+      .line{
+        height: .5px;
+        width: 92.5%;
+        background: grey;
+        opacity: .5;
+        margin-top: 10px;
+      }
+      .container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 100vh;
+      }
+     .main{
+        width: 95%;
+        height: 250px;
+        margin-top: 15px;
+        background-image: url('../bg.jpg');
+        background-size: 100% 200%;
+        border-radius: 10px 10px 0 0;
+        position: relative;
+        display: flex;
+        justify-content: center;
+      }
+      .main::before{
+        content: '';
+        position: absolute;
+        width: 200px;
+        height: 200px;
+        background: white;
+        bottom: -100px;
+        border-radius: 100%;
+      }
+      .main::after{
+        content: '';
+        height: 190px;
+        width: 190px;
+        position: absolute;
+        border-radius: 100%;
+        background-image: url('../dp.png');
+        background-size: 190px;
+        bottom: -95px;
+      }
+      .name {
+        text-align: center;
+        margin-top: 120px;
+        font-weight: 500;
+        font-size: 30px;
+        font-style: sans-serif;
+      }
+      
+      .buttons{
+        margin-top: 10px;
+        display: flex;
+      }
+      .button{
+        height: 35px;
+        width: 165px;
+        background: #d2d9db;
+        margin: 5px;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .button.more{
+        width: 50px;
+      }
+      .button.message{
+        background: #1877f2;
+        color: white;
+      }
+      i{
+        margin: 0 7px;
+      }
+      .about{
+        display: flex;
+        width: 93%;
+        margin: 20px 0;
+        flex-direction: column;
+      }
+      .about div{
+        margin: 10px 0;
+      }
+      .about div>i{
+        margin-right: 15px;
+        opacity: .5;
+        font-size: 20px;
+      }
+      .about div>span{
+        font-weight: 500;
+      }
+      .hobby{
+        display: flex;
+      }
+      .hobby p{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 90px;
+        height: 30px;
+        border-radius: 15px;
+        background: #d9d9db;
+      }
+      .line1{
+        width: 100%;
+        margin: 0px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="main"></div>
+      <div class="name">
+        <p>Ankit Raj</p>
+      </div>
+      <div class="buttons">
+        <div class="button friends"><i class="fa-solid fa-user-check"></i> Friends</div>
+        <div class="button message"><i class="fa-brands fa-facebook-messenger"></i>Message</div>
+        <div class="button more">•••</div>
+      </div>
+      <div class="line"></div>
+      <div class="about">
+        <div><i class="fa-solid fa-briefcase"></i>Delhi at <span>College student</span></div>
+        <div><i class="fa-solid fa-graduation-cap"></i>Studied at <span>School of Engineering, JNU</span></div>
+        <div><i class="fa-solid fa-graduation-cap"></i>Went to sant gyaneshwar model school</div>
+        <div><i class="fa-solid fa-home"></i>Live in <span>Delhi, India</span></div>
+        <div><i class="fa-solid fa-location"></i>From <span>Delhi, India</span></div>
+        <div><i class="fa-solid fa-heart"></i>Single</div>
+        <div><i class="fa-solid fa-ellipsis"></i> See Google's About Info</div>
+        <div class="hobby">
+          <p><i class="fa-regular fa-bat-ball"></i>Cricket</p>
+        </div>
+      </div>
+      <div class="line line1"></div>
+    </div>
+  </body>
+</html>
