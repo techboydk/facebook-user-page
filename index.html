@@ -32,7 +32,7 @@
         width: 95%;
         height: 250px;
         margin-top: 15px;
-        background: grey;
+        background: #e9ebee;
         background-size: 100% 200%;
         border-radius: 10px 10px 0 0;
         position: relative;
@@ -40,7 +40,6 @@
         justify-content: center;
         align-items: center;
         flex-direction: column;
-        z-index: 0;
       }
 
       .main::before{
@@ -51,7 +50,15 @@
         background: white;
         bottom: -100px;
         border-radius: 100%;
-        z-index: 1;
+      }
+      .main::after{
+        content: '';
+        height: 190px;
+        width: 190px;
+        position: absolute;
+        border-radius: 100%;
+        background: #e9ebee;
+        bottom: -95px;
       }
       .main .bg{
         width: 100%;
@@ -61,7 +68,6 @@
         border-radius: 10px 10px 0 0;
       }
       .main .dp{
-        content: '';
         height: 190px;
         width: 190px;
         position: absolute;
@@ -69,7 +75,7 @@
         background-image: url('dp.png');
         background-size: 190px;
         bottom: -95px;
-        z-index: 2;
+        z-index: 1;
       }
 
       .name {
@@ -175,4 +181,4 @@
       location.href = name
     }
   </script>
-</html>6v
+</html>
