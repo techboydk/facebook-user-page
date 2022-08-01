@@ -32,7 +32,7 @@
         width: 95%;
         height: 250px;
         margin-top: 15px;
-        background-image: url('bg.jpg');
+        background: grey;
         background-size: 100% 200%;
         border-radius: 10px 10px 0 0;
         position: relative;
@@ -52,6 +52,13 @@
         bottom: -100px;
         border-radius: 100%;
         z-index: 1;
+      }
+      .main .bg{
+        width: 100%;
+        height: 100%;
+        background-image: url('bg.jpg');
+        background-size: 100% 200%;
+        border-radius: 10px 10px 0 0;
       }
       .main .dp{
         content: '';
@@ -134,7 +141,8 @@
   </head>
   <body>
     <div class="container">
-      <div class="main" onclick="showimg('bg.jpg')">
+      <div class="main">
+        <div class="bg" onclick="showimg('bg.jpg')"></div>
          <div class="dp" onclick="showimg('dp.png')"></div>
       </div>
      
@@ -162,9 +170,9 @@
       <div class="line line1"></div>
     </div>
   </body>
-  <script type="text/javascript" charset="utf-8">
+  <script src="script.js" type="text/javascript" charset="utf-8">
     function showimg(name){
       location.href = name
     }
   </script>
-</html>
+</html>6v
