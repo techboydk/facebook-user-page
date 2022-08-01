@@ -90,7 +90,6 @@
         align-items: center;
         position: absolute;
         font-size: 20px;
-        pointer-events: all;
       }
       .name {
         text-align: center;
@@ -176,18 +175,23 @@
       }
       
       
-      .profile{
+      .profile-container{
         display: none;
         width: 100%;
         height: 250px;
         background: white;
-        border-radius: 20px 20px 0 0;
+        border-radius: 15px 15px 0 0;
         position: fixed;
         bottom: 0;
+        flex-direction: column;
+        justify-content: center;
+        z-index: 3;
+      }
+      .profile{
+        margin: 25px 0 5px;
       }
       .active{
         display: flex;
-        z-index: 3;
       }
       .blur{
         display: flex;
@@ -197,6 +201,40 @@
         background: black;
         opacity: .4;
         z-index: 2;
+      }
+      .profile-container::after{
+        content: '';
+        display: flex;
+        position: absolute;
+        width: 40px;
+        height: 4px;
+        border-radius: 5px;
+        background: lightgrey;
+        z-index: 5;
+        top: 10px;
+        left: 50%;
+        transform: translate(-50%);
+      }
+      .contain{
+        display: flex;
+        margin: 17px 10px;
+        align-items: center;
+        font-size: 18px;
+      }
+      .contain .icon{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 40px;
+        height: 40px;
+        background: #e9ebee;
+        border-radius: 100%;
+        margin-right: 20px;
+        font-size: 20px;
+        color: black;
+      }
+      .frame{
+        transform: rotate(-30deg);
       }
     </style>
   </head>
@@ -234,6 +272,7 @@
           <h4>You locked your profile</h4>
           <p>Learn more</p>
         </div>
+      
       </div>
       <div class="line"></div>
       <div class="about">
@@ -254,14 +293,37 @@
     
     <div class="profile-container">
       <div class="profile">
-        
+        <div class="contain">
+          <div class="icon frame">
+            <span class="iconify" data-icon="flat-color-icons:frame" data-rotate="90deg"></span>
+          </div>
+          <div class="text">Add frame</div>
+        </div>
+         <div class="contain">
+          <div class="icon">
+           <span class="iconify" data-icon="ic:outline-photo-library"></span>
+          </div>
+          <div class="text">Select profile picture</div>
+        </div>
+       <div class="contain">
+          <div class="icon">
+            <span class="iconify" data-icon="bxs:user-rectangle"></span>
+          </div>
+          <div class="text">View profile picture</div>
+        </div>
+         <div class="contain">
+          <div class="icon">
+            <span class="iconify" data-icon="icon-park-twotone:avatar"></span>
+          </div>
+          <div class="text">Create avatar profile picture</div>
+        </div>
       </div>
     </div>
     
   </body>
   <script type="text/javascript" charset="utf-8">
     function profile(){
-      const profile = document.querySelector('.profile')
+      const profile = document.querySelector('.profile-container')
       const profileContainer = document.querySelector('.inactive')
       profile.classList.toggle('active');
       profileContainer.classList.toggle('blur');
