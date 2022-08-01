@@ -12,6 +12,9 @@
         margin: 0;
         padding: 0;
       }
+      a{
+        all: unset;
+      }
       .line{
         height: .5px;
         width: 92.5%;
@@ -35,7 +38,11 @@
         position: relative;
         display: flex;
         justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        z-index: 0;
       }
+
       .main::before{
         content: '';
         position: absolute;
@@ -44,8 +51,9 @@
         background: white;
         bottom: -100px;
         border-radius: 100%;
+        z-index: 1;
       }
-      .main::after{
+      .main .dp{
         content: '';
         height: 190px;
         width: 190px;
@@ -54,7 +62,9 @@
         background-image: url('dp.png');
         background-size: 190px;
         bottom: -95px;
+        z-index: 2;
       }
+
       .name {
         text-align: center;
         margin-top: 120px;
@@ -124,7 +134,10 @@
   </head>
   <body>
     <div class="container">
-      <div class="main"></div>
+      <div class="main" onclick="showimg('bg.jpg')">
+         <div class="dp" onclick="showimg('dp.png')"></div>
+      </div>
+     
       <div class="name">
         <p>Ankit Raj</p>
       </div>
