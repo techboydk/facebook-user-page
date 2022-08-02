@@ -30,10 +30,23 @@
         opacity: 0;
       }
       .cover img{
-        width: 100px;
+        width: 120px;
         animation: zoom-in 2s;
         animation-delay: 2s;
         opacity: 0;
+      }
+      .cover::before{
+        content: ' Facebook Editable ';
+        display: flex;
+        position: absolute;
+        justify-content: center;
+        align-content: center;
+        margin-top: 160px;
+        animation: fade-out 2s;
+        animation-delay: 2.1s;
+        opacity: 0;
+        font-weight: 900;
+        color: #1877f2;
       }
       @keyframes fade-out{
         0% , 85%{
@@ -48,11 +61,7 @@
           opacity: 1;
         }
         50%{
-          width: 100px;
-          opacity: 1;
-        }
-        60%{
-          width: 90px;
+          width: 120px;
           opacity: 1;
         }
         100%{
