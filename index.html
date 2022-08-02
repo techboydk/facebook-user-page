@@ -11,11 +11,12 @@
         margin: 0;
         padding: 0;
       }
-      a{
+      input{
         all: unset;
+        width: 100%;
+        padding: 0 5px;
       }
 
-            
       .cover{
         top: 0;
         display: flex;
@@ -198,6 +199,7 @@
         flex-direction: column;
       }
       .about div{
+        display: flex;
         margin: 10px 0;
       }
       .about div>i{
@@ -275,6 +277,7 @@
         margin: 17px 10px;
         align-items: center;
         font-size: 18px;
+        position: relative;
       }
       .contain .icon{
         display: flex;
@@ -291,7 +294,14 @@
       .frame{
         transform: rotate(-30deg);
       }
-      
+      .contain input{
+        all: unset;
+        background: red;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        opacity: 0;
+      }
     </style>
   </head>
   <body>
@@ -304,7 +314,7 @@
             <i class="fa-solid fa-camera"></i>
           </div>
         </div>
-         <div class="dp">
+        <div class="dp" id="dp">
            <div class="cam cam-dp">
              <i class="fa-solid fa-camera"></i>
            </div>
@@ -312,7 +322,7 @@
       </div>
      
       <div class="name">
-        <p>Dipesh Yadav</p>
+        <input type="text" value="Dipesh Yadav" />
       </div>
       <div class="buttons">
         <div class="button story"><i class="fa-solid fa-plus-circle"></i> Add Story</div>
@@ -331,11 +341,10 @@
       </div>
       <div class="line"></div>
       <div class="about">
-        <div><i class="fa-solid fa-briefcase"></i>Delhi at <b>College student</b></div>
-        <div><i class="fa-solid fa-graduation-cap"></i>Studied at <b>School of Engineering, JNU</b></div>
-        <div><i class="fa-solid fa-graduation-cap"></i>Went to sant gyaneshwar model school</div>
-        <div><i class="fa-solid fa-home"></i>Live in <b>Delhi, India</b></div>
-        <div><i class="fa-solid fa-location"></i>From <b>Uttar pradesh, India</b></div>
+        <div><i class="fa-solid fa-graduation-cap"></i>Studied at <b><input type="text" value="School of Engineering, JNU" /></b></div>
+        <div><i class="fa-solid fa-graduation-cap"></i><input type="text" value="Went to sant gyaneshwar model school" /></div>
+        <div><i class="fa-solid fa-home"></i>Live in <b><input type="text" value="Delhi, India" /></b></div>
+        <div><i class="fa-solid fa-location"></i>From <b><input type="text" value="Uttar pradesh, India" /></b></div>
         <div><i class="fa-solid fa-heart"></i>Single</div>
         <div><i class="fa-solid fa-ellipsis"></i> See Google's About Info</div>
         <div class="public-details">
@@ -354,6 +363,7 @@
           <div class="text">Add frame</div>
         </div>
          <div class="contain">
+          <input type="file" accept="image/*" class="input_image_dp"/>
           <div class="icon">
            <span class="iconify" data-icon="ic:outline-photo-library"></span>
           </div>
@@ -389,6 +399,7 @@
           <div class="text">Create avatar cover photo</div>
         </div>
         <div class="contain">
+          <input type="file" accept="image/*" class="input_image_bg"/>
           <div class="icon">
            <span class="iconify" data-icon="foundation:upload"></span>
           </div>
@@ -415,38 +426,64 @@
     
   </body>
   <script type="text/javascript" charset="utf-8">
+    const profiledp = document.querySelector('.profile-container-dp')
+    const profilebg = document.querySelector('.profile-container-bg')
+    const profileContainer = document.querySelector('#blur')
+    const input_image_bg = document.querySelector(".input_image_bg")
+    const input_image_dp = document.querySelector(".input_image_dp")
+
+    var uploaded_image = "";
+    
+    input_image_dp.addEventListener('click', ()=>{
+      profilebg.classList.remove('active')
+      profiledp.classList.remove('active')
+      profileContainer.classList.remove('blur')
+    });
+    input_image_bg.addEventListener('click', ()=>{
+      profilebg.classList.remove('active')
+      profiledp.classList.remove('active')
+      profileContainer.classList.remove('blur')
+    });
+    
+    input_image_dp.addEventListener("change", function(){
+      const reader = new FileReader();
+      reader.addEventListener("load", () =>{
+        uploaded_image = reader.result;
+        document.querySelector('.dp').style.backgroundImage = `url(${uploaded_image})`
+        });
+        reader.readAsDataURL(this.files[0]);
+      });
+      
+    input_image_bg.addEventListener("change", function(){
+      const reader = new FileReader();
+      reader.addEventListener("load", () =>{
+        uploaded_image = reader.result;
+        document.querySelector('.bg').style.backgroundImage = `url(${uploaded_image})`
+      });
+      reader.readAsDataURL(this.files[0]);
+    });
+    
     setTimeout(
     function() {
       document.getElementById('cover').style.display='none';
     }, 4000);
     
-    document.querySelector('.dp').addEventListener("click", profileDp)
-    document.querySelector('.bg').addEventListener("click", profileBg)
-    document.querySelector('#blur').addEventListener("click", removeBlur)
-    
-    function profileDp(){
-      const profile = document.querySelector('.profile-container-dp')
-      const profileContainer = document.querySelector('#blur')
-      profile.classList.add('active');
+    document.querySelector('.dp').addEventListener("click", ()=>{
+      profiledp.classList.add('active');
       profileContainer.classList.add('blur');
-    }
-    
-    function profileBg(){
-      const profile = document.querySelector('.profile-container-bg')
-      const profileContainer = document.querySelector('#blur')
-      profile.classList.add('active');
+    })
+    document.querySelector('.bg').addEventListener("click", ()=>{
+       profilebg.classList.add('active');
       profileContainer.classList.add('blur');
-    }
-    
-    function removeBlur(){
-      const profiledp = document.querySelector('.profile-container-dp')
-      const profilebg = document.querySelector('.profile-container-bg')
-      const profileContainer = document.querySelector('#blur')
-        profiledp.classList.remove('active')
+    })
+    document.querySelector('#blur').addEventListener("click", ()=>{
+      profiledp.classList.remove('active')
         profileContainer.classList.remove('blur')
         profilebg.classList.remove('active')
-      
-    }
+    });
+    
+    
+    
   </script>
   <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
