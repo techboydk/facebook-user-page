@@ -222,10 +222,22 @@
       }
       
       
-      .profile-container{
+      .profile-container-dp{
         display: none;
         width: 100%;
-        height: 250px;
+        height: 270px;
+        background: white;
+        border-radius: 15px 15px 0 0;
+        position: fixed;
+        bottom: 0;
+        flex-direction: column;
+        justify-content: center;
+        z-index: 3;
+      }
+      .profile-container-bg{
+        display: none;
+        width: 100%;
+        height: 320px;
         background: white;
         border-radius: 15px 15px 0 0;
         position: fixed;
@@ -249,7 +261,7 @@
         opacity: .4;
         z-index: 2;
       }
-      .profile-container::after{
+      .dash::after{
         content: '';
         display: flex;
         position: absolute;
@@ -286,18 +298,16 @@
     </style>
   </head>
   <body>
-    <div class="inactive" onclick="profile()">
-      
-    </div>
+    <div id="blur"></div>
     
     <div class="container">
       <div class="main">
-        <div class="bg" onclick="profile()">
+        <div class="bg">
           <div class="cam cam-bg">
             <i class="fa-solid fa-camera"></i>
           </div>
         </div>
-         <div class="dp" onclick="profile()">
+         <div class="dp">
            <div class="cam cam-dp">
              <i class="fa-solid fa-camera"></i>
            </div>
@@ -338,7 +348,7 @@
       <div class="line line1"></div>
     </div>
 
-    <div class="profile-container">
+    <div class="profile-container-dp dash">
       <div class="profile">
         <div class="contain">
           <div class="icon frame">
@@ -367,22 +377,78 @@
       </div>
     </div>
     
+      <div class="profile-container-bg dash">
+      <div class="profile">
+        <div class="contain">
+          <div class="icon frame">
+            <span class="iconify" data-icon="ic:outline-photo-library"></span>
+          </div>
+          <div class="text">View profile cover</div>
+        </div>
+        <div class="contain">
+          <div class="icon">
+           <span class="iconify" data-icon="icon-park-twotone:avatar"></span>
+          </div>
+          <div class="text">Create avatar cover photo</div>
+        </div>
+        <div class="contain">
+          <div class="icon">
+           <span class="iconify" data-icon="foundation:upload"></span>
+          </div>
+          <div class="text">Upload photo</div>
+        </div>
+        <div class="contain">
+          <div class="icon">
+            <span class="iconify" data-icon="ci:facebook"></span>
+          </div>
+          <div class="text">Select photo on facebook</div>
+        </div>
+        <div class="contain">
+          <div class="icon">
+            <span class="iconify" data-icon="mdi:collage"></span>
+          </div>
+          <div class="text">Create cover collage</div>
+        </div>
+      </div>
+    </div>
     
     <div class="cover" id="cover">
       <img src="logo.png" alt="logo" />
     </div>
+    
   </body>
   <script type="text/javascript" charset="utf-8">
     setTimeout(
     function() {
       document.getElementById('cover').style.display='none';
     }, 4000);
-  
-    function profile(){
-      const profile = document.querySelector('.profile-container')
-      const profileContainer = document.querySelector('.inactive')
-      profile.classList.toggle('active');
-      profileContainer.classList.toggle('blur');
+    
+    document.querySelector('.dp').addEventListener("click", profileDp)
+    document.querySelector('.bg').addEventListener("click", profileBg)
+    document.querySelector('#blur').addEventListener("click", removeBlur)
+    
+    function profileDp(){
+      const profile = document.querySelector('.profile-container-dp')
+      const profileContainer = document.querySelector('#blur')
+      profile.classList.add('active');
+      profileContainer.classList.add('blur');
+    }
+    
+    function profileBg(){
+      const profile = document.querySelector('.profile-container-bg')
+      const profileContainer = document.querySelector('#blur')
+      profile.classList.add('active');
+      profileContainer.classList.add('blur');
+    }
+    
+    function removeBlur(){
+      const profiledp = document.querySelector('.profile-container-dp')
+      const profilebg = document.querySelector('.profile-container-bg')
+      const profileContainer = document.querySelector('#blur')
+        profiledp.classList.remove('active')
+        profileContainer.classList.remove('blur')
+        profilebg.classList.remove('active')
+      
     }
   </script>
   <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
