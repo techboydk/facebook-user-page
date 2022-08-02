@@ -222,7 +222,7 @@
       }
       
       
-      .profile-container-dp{
+      .profile-container{
         display: flex;
         width: 100%;
         height: 270px;
@@ -234,29 +234,17 @@
         justify-content: center;
         z-index: 3;
         transition-timing-function: ease-in;
-        transition: 0.4s;
+        transition: 0.3s;
         transform: translateY(130%);
       }
       .profile-container-bg{
-        display: flex;
-        width: 100%;
         height: 320px;
-        background: white;
-        border-radius: 15px 15px 0 0;
-        position: fixed;
-        bottom: 0;
-        flex-direction: column;
-        justify-content: center;
-        z-index: 3;
-        transition-timing-function: ease-in;
-        transition: 0.4s;
-        transform: translateY(130%);
       }
       .profile{
         margin: 25px 0 5px;
       }
       .active{
-        transition: .4s;
+        transition: .25s;
         transition-timing-function: ease-out;
         transform: translateY(0);
       }
@@ -357,7 +345,7 @@
       <div class="line line1"></div>
     </div>
 
-    <div class="profile-container-dp dash">
+    <div class="profile-container-dp profile-container dash">
       <div class="profile">
         <div class="contain">
           <div class="icon frame">
@@ -386,7 +374,7 @@
       </div>
     </div>
     
-      <div class="profile-container-bg dash">
+      <div class="profile-container-bg profile-container dash">
       <div class="profile">
         <div class="contain">
           <div class="icon frame">
