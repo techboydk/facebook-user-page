@@ -223,7 +223,7 @@
       
       
       .profile-container-dp{
-        display: none;
+        display: flex;
         width: 100%;
         height: 270px;
         background: white;
@@ -233,9 +233,12 @@
         flex-direction: column;
         justify-content: center;
         z-index: 3;
+        transition-timing-function: ease-in;
+        transition: 0.4s;
+        transform: translateY(130%);
       }
       .profile-container-bg{
-        display: none;
+        display: flex;
         width: 100%;
         height: 320px;
         background: white;
@@ -245,12 +248,17 @@
         flex-direction: column;
         justify-content: center;
         z-index: 3;
+        transition-timing-function: ease-in;
+        transition: 0.4s;
+        transform: translateY(130%);
       }
       .profile{
         margin: 25px 0 5px;
       }
       .active{
-        display: flex;
+        transition: .4s;
+        transition-timing-function: ease-out;
+        transform: translateY(0);
       }
       .blur{
         display: flex;
@@ -295,6 +303,7 @@
       .frame{
         transform: rotate(-30deg);
       }
+      
     </style>
   </head>
   <body>
