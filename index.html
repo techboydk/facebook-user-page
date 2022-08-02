@@ -14,7 +14,6 @@
       input{
         all: unset;
         width: 100%;
-        padding: 0 5px;
       }
 
       .cover{
@@ -207,7 +206,10 @@
         opacity: .5;
         font-size: 20px;
       }
-    
+      .about p[contenteditable]:focus{
+        outline: none;
+      }
+      
       .public-details {
         display: flex;
         width: 100%;
@@ -341,11 +343,11 @@
       </div>
       <div class="line"></div>
       <div class="about">
-        <div><i class="fa-solid fa-graduation-cap"></i>Studied at <b><input type="text" value="School of Engineering, JNU" /></b></div>
-        <div><i class="fa-solid fa-graduation-cap"></i><input type="text" value="Went to sant gyaneshwar model school" /></div>
-        <div><i class="fa-solid fa-home"></i>Live in <b><input type="text" value="Delhi, India" /></b></div>
-        <div><i class="fa-solid fa-location"></i>From <b><input type="text" value="Uttar pradesh, India" /></b></div>
-        <div><i class="fa-solid fa-heart"></i><input type="text" value="Single" /></div>
+        <div><i class="fa-solid fa-graduation-cap"></i><p contenteditable="true">Studied at  <b> School of Engineering, JNU</b></p></div>
+        <div><i class="fa-solid fa-graduation-cap"></i><p contenteditable="true">Went to <b>Devi Prashad Mahavidhyalal Pilkhini Janghai, Prayagraj</b></p></div>
+        <div><i class="fa-solid fa-home"></i><p contenteditable="true">Live in <b>Delhi</b></p></div>
+        <div><i class="fa-solid fa-location"></i><p contenteditable="true">From <b>Bhadohi, Uttar Pradesh</b></p></div>
+        <div><i class="fa-solid fa-heart"></i><p contenteditable="true">Single</p></div>
         <div><i class="fa-solid fa-ellipsis"></i> See Google's About Info</div>
         <div class="public-details">
           <p>Edit public details</p>
@@ -423,7 +425,7 @@
     <div class="cover" id="cover">
       <img src="logo.png" alt="logo" />
     </div>
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   </body>
   <script type="text/javascript" charset="utf-8">
     const profiledp = document.querySelector('.profile-container-dp')
@@ -482,9 +484,15 @@
         profilebg.classList.remove('active')
     });
     
-    
+    $("textarea").each(function () {
+      this.setAttribute("style", "height:" + (this.scrollHeight) + "px;overflow-y:hidden;");
+    }).on("input", function () {
+       this.style.height = "auto";
+       this.style.height = (this.scrollHeight) + "px";
+});
     
   </script>
   <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+
 </html>
