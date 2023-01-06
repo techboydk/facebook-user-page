@@ -1,326 +1,375 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link rel="stylesheet" href="style.css" type="text/css" media="all" />
-    <title>Facebook user page</title>
-    <style type="text/css" media="all">
-      *{
-        margin: 0;
-        padding: 0;
-      }
-      body{
-        max-width: 468px;
-        margin: auto;
-        border: 1px solid #ccc;
-      }
-      input{
-        all: unset;
-        width: 100%;
-      }
-      .cover{
-        top: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        height: 100%;
-        position: fixed;
-        background: #e9ebee;
-        z-index: 10;
-        animation: fade-out 4s;
-        opacity: 0;
-      }
-      .cover img{
-        width: 120px;
-        animation: zoom-in 2s;
-        animation-delay: 2s;
-        opacity: 0;
-      }
-      .cover::before{
-        content: ' Facebook Editable ';
-        display: flex;
-        position: absolute;
-        justify-content: center;
-        align-content: center;
-        margin-top: 160px;
-        animation: fade-out 2s;
-        animation-delay: 2.1s;
-        opacity: 0;
-        font-weight: 900;
-        color: #1877f2;
-      }
-      @keyframes fade-out{
-        0% , 85%{
-          opacity: 1;
-        }
-        100%{
-          opacity: 0;
-        }
-      }
-      @keyframes zoom-in{
-        25%{
-          opacity: 1;
-        }
-        50%{
-          width: 120px;
-          opacity: 1;
-        }
-        100%{
-          width: 250%;
-          opacity: 1;
-        }
-      }
-      
-      .line{
-        height: .5px;
-        width: 92.5%;
-        background: grey;
-        opacity: .5;
-        margin-top: 10px;
-      }
-      .container{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        min-height: 100vh;
-      }
-     .main{
-        width: 93%;
-        height: 28vh;
-        margin-top: 15px;
-        background: #e9ebee;
-        background-size: 100% 200%;
-        border-radius: 10px 10px 0 0;
-        position: relative;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css" type="text/css" media="all" />
+  <title>Facebook user page</title>
+  <style type="text/css" media="all">
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      max-width: 468px;
+      margin: auto;
+      border: 1px solid #ccc;
+    }
+
+    .main-container {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    input {
+      all: unset;
+      width: 100%;
+    }
+
+    .cover {
+      top: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+      position: fixed;
+      background: #e9ebee;
+      z-index: 10;
+      animation: fade-out 4s;
+      opacity: 0;
+    }
+
+    .cover img {
+      width: 120px;
+      animation: zoom-in 2s;
+      animation-delay: 2s;
+      opacity: 0;
+    }
+
+    .cover::before {
+      content: ' Facebook Editable ';
+      display: flex;
+      position: absolute;
+      justify-content: center;
+      align-content: center;
+      margin-top: 160px;
+      animation: fade-out 2s;
+      animation-delay: 2.1s;
+      opacity: 0;
+      font-weight: 900;
+      color: #1877f2;
+    }
+
+    @keyframes fade-out {
+
+      0%,
+      85% {
+        opacity: 1;
       }
 
-      .main::before{
-        content: '';
-        position: absolute;
-        width: 220px;
-        height: 220px;
-        background: white;
-        bottom: -110px;
-        border-radius: 100%;
-      }
-      .main::after{
-        content: '';
-        height: 190px;
-        width: 190px;
-        position: absolute;
-        border-radius: 100%;
-        background: #e9ebee;
-        bottom: -95px;
-      }
-      .main .bg{
-        width: 100%;
-        height: 100%;
-        background-image: url('bg.png');
-        background-size: 100% 100%;
-        border-radius: 10px 10px 0 0;
-      }
-      .main .dp{
-        display: block;
-        height: 210px;
-        width: 210px;
-        position: absolute;
-        border-radius: 100%;
-        background-image: url('dp.png');
-        background-size: 105% 105%;
-        bottom: -105px;
-        z-index: 1;
-      }
-    
-      .cam {
-        display: flex;
-        bottom: 5px;
-        right: 5px;
-        height: 35px;
-        width: 35px;
-        background: #e9ebee;
-        border-radius: 100%;
-        justify-content: center;
-        align-items: center;
-        position: absolute;
-        font-size: 20px;
-      }
-      .name {
-        text-align: center;
-        margin-top: 120px;
-        font-weight: 500;
-        font-size: 30px;
-        font-style: sans-serif;
-      }
-      
-      .buttons{
-        margin-top: 10px;
-        display: flex;
-      }
-      .button{
-        height: 35px;
-        width: 10.5rem;
-        background: #e9ebee;
-        margin: 5px;
-        border-radius: 5px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-      .button.more{
-        width: 50px;
-      }
-      .button.story{
-        background: #1877f2;
-        color: white;
-      }
-      .lock-sec{
-        display: flex;
-        width: 100%;
-        flex-direction: row;
-        margin: 15px 20px;
-      }
-      .lock-sec .icon{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 35px;
-        height: 35px;
-        background: #1877f2;
-        border-radius: 100%;
-        font-size: 20px;
-        margin: 0 10px;
-        color: white;
-      }
-      .lock-sec .text p{
-        color: #1877f2;
-      }
-      i{
-        margin: 0 7px;
-      }
-      .about{
-        display: flex;
-        width: 93%;
-        margin: 20px 0;
-        flex-direction: column;
-      }
-      .about div{
-        display: flex;
-        margin: 10px 0;
-      }
-      .about div>i{
-        margin-right: 15px;
-        opacity: .5;
-        font-size: 20px;
-      }
-      .about p[contenteditable]:focus{
-        outline: none;
-      }
-      
-      .public-details {
-        display: flex;
-        width: 100%;
-        height: 40px;
-        justify-content: center;
-        align-items: center;
-        border-radius: 5px;
-        background: #dbf3fa;
-        color: #1877f2;
-      }
-      .line1{
-        width: 100%;
-        margin: 0px 0;
-      }
-      
-      
-      .profile-container{
-        display: flex;
-        width: 100%;
-        height: 270px;
-        background: white;
-        border-radius: 15px 15px 0 0;
-        position: fixed;
-        bottom: 0;
-        flex-direction: column;
-        justify-content: center;
-        z-index: 3;
-        transition-timing-function: ease-in;
-        transition: 0.3s;
-        transform: translateY(130%);
-      }
-      .profile-container-bg{
-        height: 320px;
-      }
-      .profile{
-        margin: 25px 0 5px;
-      }
-      .active{
-        transition: .25s;
-        transition-timing-function: ease-out;
-        transform: translateY(0);
-      }
-      .blur{
-        display: flex;
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        background: black;
-        opacity: .4;
-        z-index: 2;
-      }
-      .dash::after{
-        content: '';
-        display: flex;
-        position: absolute;
-        width: 40px;
-        height: 4px;
-        border-radius: 5px;
-        background: lightgrey;
-        z-index: 5;
-        top: 10px;
-        left: 50%;
-        transform: translate(-50%);
-      }
-      .contain{
-        display: flex;
-        margin: 17px 10px;
-        align-items: center;
-        font-size: 18px;
-        position: relative;
-      }
-      .contain .icon{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 40px;
-        height: 40px;
-        background: #e9ebee;
-        border-radius: 100%;
-        margin-right: 20px;
-        font-size: 20px;
-        color: black;
-      }
-      .frame{
-        transform: rotate(-30deg);
-      }
-      .contain input{
-        all: unset;
-        background: red;
-        width: 100%;
-        height: 100%;
-        position: absolute;
+      100% {
         opacity: 0;
       }
-    </style>
-  </head>
-  <body>
+    }
+
+    @keyframes zoom-in {
+      25% {
+        opacity: 1;
+      }
+
+      50% {
+        width: 120px;
+        opacity: 1;
+      }
+
+      100% {
+        width: 250%;
+        opacity: 1;
+      }
+    }
+
+    .line {
+      height: .5px;
+      width: 92.5%;
+      background: grey;
+      opacity: .5;
+      margin-top: 10px;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .main {
+      width: 93%;
+      height: 28vh;
+      margin-top: 15px;
+      background: #e9ebee;
+      background-size: 100% 200%;
+      border-radius: 10px 10px 0 0;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .main::before {
+      content: '';
+      position: absolute;
+      width: 220px;
+      height: 220px;
+      background: white;
+      bottom: -110px;
+      border-radius: 100%;
+    }
+
+    .main::after {
+      content: '';
+      height: 190px;
+      width: 190px;
+      position: absolute;
+      border-radius: 100%;
+      background: #e9ebee;
+      bottom: -95px;
+    }
+
+    .main .bg {
+      width: 100%;
+      height: 100%;
+      background-image: url('bg.png');
+      background-size: 100% 100%;
+      border-radius: 10px 10px 0 0;
+    }
+
+    .main .dp {
+      display: block;
+      height: 210px;
+      width: 210px;
+      position: absolute;
+      border-radius: 100%;
+      background-image: url('dp.png');
+      background-size: 105% 105%;
+      bottom: -105px;
+      z-index: 1;
+    }
+
+    .cam {
+      display: flex;
+      bottom: 5px;
+      right: 5px;
+      height: 35px;
+      width: 35px;
+      background: #e9ebee;
+      border-radius: 100%;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      font-size: 20px;
+    }
+
+    .name {
+      text-align: center;
+      margin-top: 120px;
+      font-weight: 500;
+      font-size: 30px;
+      font-style: sans-serif;
+    }
+
+    .buttons {
+      margin-top: 10px;
+      display: flex;
+    }
+
+    .button {
+      height: 35px;
+      width: 10.5rem;
+      background: #e9ebee;
+      margin: 5px;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .button.more {
+      width: 50px;
+    }
+
+    .button.story {
+      background: #1877f2;
+      color: white;
+    }
+
+    .lock-sec {
+      display: flex;
+      width: 100%;
+      flex-direction: row;
+      margin: 15px 20px;
+    }
+
+    .lock-sec .icon {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 35px;
+      height: 35px;
+      background: #1877f2;
+      border-radius: 100%;
+      font-size: 20px;
+      margin: 0 10px;
+      color: white;
+    }
+
+    .lock-sec .text p {
+      color: #1877f2;
+    }
+
+    i {
+      margin: 0 7px;
+    }
+
+    .about {
+      display: flex;
+      width: 93%;
+      margin: 20px 0;
+      flex-direction: column;
+    }
+
+    .about div {
+      display: flex;
+      margin: 10px 0;
+    }
+
+    .about div>i {
+      margin-right: 15px;
+      opacity: .5;
+      font-size: 20px;
+    }
+
+    .about p[contenteditable]:focus {
+      outline: none;
+    }
+
+    .public-details {
+      display: flex;
+      width: 100%;
+      height: 40px;
+      justify-content: center;
+      align-items: center;
+      border-radius: 5px;
+      background: #dbf3fa;
+      color: #1877f2;
+    }
+
+    .line1 {
+      width: 100%;
+      margin: 0px 0;
+    }
+
+
+    .profile-container {
+      display: flex;
+      width: 100%;
+      height: 270px;
+      background: white;
+      border-radius: 15px 15px 0 0;
+      position: absolute;
+      bottom: 0;
+      flex-direction: column;
+      justify-content: center;
+      z-index: 3;
+      transition-timing-function: ease-in;
+      transition: 0.3s;
+      transform: translateY(130%);
+    }
+
+    .profile-container-bg {
+      height: 320px;
+    }
+
+    .profile {
+      margin: 25px 0 5px;
+    }
+
+    .active {
+      transition: .25s;
+      transition-timing-function: ease-out;
+      transform: translateY(0);
+    }
+
+    .blur {
+      display: flex;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: black;
+      opacity: .4;
+      z-index: 2;
+    }
+
+    .dash::after {
+      content: '';
+      display: flex;
+      position: absolute;
+      width: 40px;
+      height: 4px;
+      border-radius: 5px;
+      background: lightgrey;
+      z-index: 5;
+      top: 10px;
+      left: 50%;
+      transform: translate(-50%);
+    }
+
+    .contain {
+      display: flex;
+      margin: 17px 10px;
+      align-items: center;
+      font-size: 18px;
+      position: relative;
+    }
+
+    .contain .icon {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 40px;
+      height: 40px;
+      background: #e9ebee;
+      border-radius: 100%;
+      margin-right: 20px;
+      font-size: 20px;
+      color: black;
+    }
+
+    .frame {
+      transform: rotate(-30deg);
+    }
+
+    .contain input {
+      all: unset;
+      background: red;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      opacity: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="main-container">
     <div id="blur"></div>
-    
+
     <div class="container">
       <div class="main">
         <div class="bg">
@@ -329,12 +378,12 @@
           </div>
         </div>
         <div class="dp" id="dp">
-           <div class="cam cam-dp">
-             <i class="fa-solid fa-camera"></i>
-           </div>
-         </div>
+          <div class="cam cam-dp">
+            <i class="fa-solid fa-camera"></i>
+          </div>
+        </div>
       </div>
-     
+
       <div class="name">
         <input type="text" value="Dipesh Yadav" />
       </div>
@@ -351,15 +400,25 @@
           <h4>You locked your profile</h4>
           <p>Learn more</p>
         </div>
-      
+
       </div>
       <div class="line"></div>
       <div class="about">
-        <div><i class="fa-solid fa-graduation-cap"></i><p contenteditable="true">Studied at  <b> School of Engineering, JNU</b></p></div>
-        <div><i class="fa-solid fa-graduation-cap"></i><p contenteditable="true">Went to <b>Devi Prashad Mahavidhyalal Pilkhini Janghai, Prayagraj</b></p></div>
-        <div><i class="fa-solid fa-home"></i><p contenteditable="true">Live in <b>Delhi</b></p></div>
-        <div><i class="fa-solid fa-location"></i><p contenteditable="true">From <b>Bhadohi, Uttar Pradesh</b></p></div>
-        <div><i class="fa-solid fa-heart"></i><p contenteditable="true">Single</p></div>
+        <div><i class="fa-solid fa-graduation-cap"></i>
+          <p contenteditable="true">Studied at <b> School of Engineering, JNU</b></p>
+        </div>
+        <div><i class="fa-solid fa-graduation-cap"></i>
+          <p contenteditable="true">Went to <b>Devi Prashad Mahavidhyalal Pilkhini Janghai, Prayagraj</b></p>
+        </div>
+        <div><i class="fa-solid fa-home"></i>
+          <p contenteditable="true">Live in <b>Delhi</b></p>
+        </div>
+        <div><i class="fa-solid fa-location"></i>
+          <p contenteditable="true">From <b>Bhadohi, Uttar Pradesh</b></p>
+        </div>
+        <div><i class="fa-solid fa-heart"></i>
+          <p contenteditable="true">Single</p>
+        </div>
         <div><i class="fa-solid fa-ellipsis"></i> See Google's About Info</div>
         <div class="public-details">
           <p>Edit public details</p>
@@ -376,20 +435,20 @@
           </div>
           <div class="text">Add frame</div>
         </div>
-         <div class="contain">
-          <input type="file" accept="image/*" class="input_image_dp"/>
+        <div class="contain">
+          <input type="file" accept="image/*" class="input_image_dp" />
           <div class="icon">
-           <span class="iconify" data-icon="ic:outline-photo-library"></span>
+            <span class="iconify" data-icon="ic:outline-photo-library"></span>
           </div>
           <div class="text">Select profile picture</div>
         </div>
-       <div class="contain">
+        <div class="contain">
           <div class="icon">
             <span class="iconify" data-icon="bxs:user-rectangle"></span>
           </div>
           <div class="text">View profile picture</div>
         </div>
-         <div class="contain">
+        <div class="contain">
           <div class="icon">
             <span class="iconify" data-icon="icon-park-twotone:avatar"></span>
           </div>
@@ -397,8 +456,8 @@
         </div>
       </div>
     </div>
-    
-      <div class="profile-container-bg profile-container dash">
+
+    <div class="profile-container-bg profile-container dash">
       <div class="profile">
         <div class="contain">
           <div class="icon frame">
@@ -408,14 +467,14 @@
         </div>
         <div class="contain">
           <div class="icon">
-           <span class="iconify" data-icon="icon-park-twotone:avatar"></span>
+            <span class="iconify" data-icon="icon-park-twotone:avatar"></span>
           </div>
           <div class="text">Create avatar cover photo</div>
         </div>
         <div class="contain">
-          <input type="file" accept="image/*" class="input_image_bg"/>
+          <input type="file" accept="image/*" class="input_image_bg" />
           <div class="icon">
-           <span class="iconify" data-icon="foundation:upload"></span>
+            <span class="iconify" data-icon="foundation:upload"></span>
           </div>
           <div class="text">Upload photo</div>
         </div>
@@ -433,73 +492,74 @@
         </div>
       </div>
     </div>
-    
+
     <div class="cover" id="cover">
       <img src="logo.png" alt="logo" />
     </div>
-  </body>
-  <script type="text/javascript" charset="utf-8">
-    const profiledp = document.querySelector('.profile-container-dp')
-    const profilebg = document.querySelector('.profile-container-bg')
-    const profileContainer = document.querySelector('#blur')
-    const input_image_bg = document.querySelector(".input_image_bg")
-    const input_image_dp = document.querySelector(".input_image_dp")
+  </div>
+</body>
+<script type="text/javascript" charset="utf-8">
+  const profiledp = document.querySelector('.profile-container-dp')
+  const profilebg = document.querySelector('.profile-container-bg')
+  const profileContainer = document.querySelector('#blur')
+  const input_image_bg = document.querySelector(".input_image_bg")
+  const input_image_dp = document.querySelector(".input_image_dp")
 
-    var uploaded_image = "";
-    
-    input_image_dp.addEventListener('click', ()=>{
-      profilebg.classList.remove('active')
-      profiledp.classList.remove('active')
-      profileContainer.classList.remove('blur')
+  var uploaded_image = "";
+
+  input_image_dp.addEventListener('click', () => {
+    profilebg.classList.remove('active')
+    profiledp.classList.remove('active')
+    profileContainer.classList.remove('blur')
+  });
+  input_image_bg.addEventListener('click', () => {
+    profilebg.classList.remove('active')
+    profiledp.classList.remove('active')
+    profileContainer.classList.remove('blur')
+  });
+
+  input_image_dp.addEventListener("change", function () {
+    const reader = new FileReader();
+    reader.addEventListener("load", () => {
+      uploaded_image = reader.result;
+      document.querySelector('.dp').style.backgroundImage = `url(${uploaded_image})`
     });
-    input_image_bg.addEventListener('click', ()=>{
-      profilebg.classList.remove('active')
-      profiledp.classList.remove('active')
-      profileContainer.classList.remove('blur')
+    reader.readAsDataURL(this.files[0]);
+  });
+
+  input_image_bg.addEventListener("change", function () {
+    const reader = new FileReader();
+    reader.addEventListener("load", () => {
+      uploaded_image = reader.result;
+      document.querySelector('.bg').style.backgroundImage = `url(${uploaded_image})`
     });
-    
-    input_image_dp.addEventListener("change", function(){
-      const reader = new FileReader();
-      reader.addEventListener("load", () =>{
-        uploaded_image = reader.result;
-        document.querySelector('.dp').style.backgroundImage = `url(${uploaded_image})`
-        });
-        reader.readAsDataURL(this.files[0]);
-      });
-      
-    input_image_bg.addEventListener("change", function(){
-      const reader = new FileReader();
-      reader.addEventListener("load", () =>{
-        uploaded_image = reader.result;
-        document.querySelector('.bg').style.backgroundImage = `url(${uploaded_image})`
-      });
-      reader.readAsDataURL(this.files[0]);
-    });
-    
-    setTimeout(
-    function() {
-      document.getElementById('cover').style.display='none';
+    reader.readAsDataURL(this.files[0]);
+  });
+
+  setTimeout(
+    function () {
+      document.getElementById('cover').style.display = 'none';
     }, 4000);
-    
-    document.querySelector('.dp').addEventListener("click", ()=>{
-      profiledp.classList.add('active');
-      profileContainer.classList.add('blur');
-    })
-    document.querySelector('.bg').addEventListener("click", ()=>{
-       profilebg.classList.add('active');
-      profileContainer.classList.add('blur');
-    })
-    document.querySelector('#blur').addEventListener("click", ()=>{
-      profiledp.classList.remove('active')
-        profileContainer.classList.remove('blur')
-        profilebg.classList.remove('active')
-    });
-    
-    if (performance.navigation.type == performance.navigation.TYPE_RELOAD) {
-      document.getElementById('cover').style.display = 'none'
-    }
-  </script>
-  <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+
+  document.querySelector('.dp').addEventListener("click", () => {
+    profiledp.classList.add('active');
+    profileContainer.classList.add('blur');
+  })
+  document.querySelector('.bg').addEventListener("click", () => {
+    profilebg.classList.add('active');
+    profileContainer.classList.add('blur');
+  })
+  document.querySelector('#blur').addEventListener("click", () => {
+    profiledp.classList.remove('active')
+    profileContainer.classList.remove('blur')
+    profilebg.classList.remove('active')
+  });
+
+  if (performance.navigation.type == performance.navigation.TYPE_RELOAD) {
+    document.getElementById('cover').style.display = 'none'
+  }
+</script>
+<script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
 
 </html>
